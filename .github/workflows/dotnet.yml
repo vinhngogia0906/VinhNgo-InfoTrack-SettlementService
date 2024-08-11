@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore SettlementService/SettlementService.sln
     - name: Build
-      run: dotnet restore SettlementService/SettlementService.sln
+      run: dotnet build --no-restore SettlementService/SettlementService.sln
     - name: Test
-      run: dotnet restore SettlementService/SettlementService.sln
+      run: dotnet test --no-build --verbosity normal SettlementService/SettlementService.sln
