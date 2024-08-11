@@ -1,18 +1,37 @@
-# Getting Started with Create React App
+# InfoTrack Settlement Service UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). This application serves as an User Interface to communicate with the [InfoTrack Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService) application.
+
+## Prerequisites
+
+It is recommended that you have these below software installed:
+- [NodeJs](https://nodejs.org/en/download) - NodeJs version v20.16.0
+- [Npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) - Npm version v10.8.2 at least.
+- [Visual Studio Code](https://code.visualstudio.com/download) - Recommended IDE
+
+## Getting Started
+This is how you setup and run the project locally on your enviroment.
+
+1. Open the `settlement-service-ui` folder inside the cloned [repository](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService) with Visual Studio Code.
+2. Install all the inlisted package (only after you meet all the version requirements above):
+```
+npm install 
+```
+3. Follow the [InfoTrack Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService)'s instruction to start it up in debug mode.
+4. Check the Uri and the listening port from your local set up of [InfoTrack Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService) and update it in the `.env` file if not match. In this case it is `https://localhost:7206/api/Booking`, but it might be different when you start debugging in your environment.
+5. Run the application with this command.
+```
+npm run start
+```
+6. Navigate to `http://localhost:3000/`. The application will automatically reload if you change any of the source files.
+
+7. Use the form to submit your booking entry for InfoTrack Settlement Service.
+![Booking submission form](image-1.png)
+![Booking confirmed](image-2.png)
+![Booking is outside of business hours](image-3.png)
+
 
 ## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
 
