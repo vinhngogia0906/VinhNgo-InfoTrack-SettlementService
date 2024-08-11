@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import { TextField, Button, MenuItem, Select, InputLabel, FormControl, SelectChangeEvent } from '@mui/material';
-import BookingSubmitForm from './components/BookingSubmitForm';
 import infoTrackLogo from './assets/infoTrack_logo.jpg';
 
 function App() {
@@ -11,9 +10,17 @@ function App() {
   const [error, setError] = useState('');
   const [formData, setFormData] = useState({ bookingTime: '', name: '' });
 
+  const timeOptions = [
+    '08:00','08:30', '09:00', '09:30', '10:00',
+    '10:30', '11:30', '12:00', '12:30', '13:00', '13:30',
+    '14:00','14:30', '15:00', '15:30', '16:00',
+    '16:30', '17:00', '17:30', '18:00', '18:30'
+  ];
+
   const handleSubmit = async () => {
+    const BACKEND_URI = process.env.SETTLE_SERVICE_BACKEND ?? 'https://localhost:7206/api/Booking';
     try {
-      const response = await fetch('https://localhost:7206/api/Booking', {
+      const response = await fetch(BACKEND_URI, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,6 +67,7 @@ function App() {
 
   const handleReSubmit = () => {
     setBookingId(null);
+    setFormData({bookingTime: '', name: ''});
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>) => {
@@ -91,16 +99,15 @@ function App() {
             <FormControl fullWidth margin="normal">
               <InputLabel id="booking-time-label">Booking Time</InputLabel>
               <Select
-                labelId="booking-time-label"
+                label="Booking Time"
                 name="bookingTime"
                 value={formData.bookingTime}
                 onChange={handleChange}
                 renderValue={(selected) => (selected ? selected : 'Select a time slot')}
               >
-                <MenuItem value="09:00">09:00</MenuItem>
-                <MenuItem value="10:00">10:00</MenuItem>
-                <MenuItem value="11:00">11:00</MenuItem>
-                {/* Add more time slots as needed */}
+                {timeOptions.map((timeOption) => (
+                  <MenuItem key={timeOption} value={timeOption}>{timeOption}</MenuItem>
+                ))}
               </Select>
             </FormControl>
             <TextField
