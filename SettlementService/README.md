@@ -1,30 +1,46 @@
-# VinhNgo-InfoTrack-Settlement-Service-Engine
+# Settlement Service Engine (Backend)
 
-Welcome to InfoTrack Settlement Service Engine.
+An ASP.NET 8.0 REST API that manages settlement booking reservations.
 
-This project is the attempt of Vinh Ngo in the InfoTrack Coding Challenge.
+## Business Rules
 
-It is an ASP.NET 8.0 application that uses REST API to accept booking reservations.
-It also comes with the React GUI application [InfoTrack Settlement Service UI](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/settlement-service-ui).
+- Bookings are accepted in `HH:mm` format during business hours (09:00--17:00)
+- Maximum 4 simultaneous bookings per time slot
+- Each booking returns a unique GUID identifier
 
 ## Prerequisites
 
-In order to start the project, you will need to install these software and tools:
-- [.NET SDK and Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) - This is required to build the backend application.
-- [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false) - Recommended IDE
+- [.NET 8.0 SDK and Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/) (recommended)
 
 ## Getting Started
-This is how you set up and run the project locally in your environment.
 
-1. Open the solution file of the `SettlementService` folder inside the cloned [repository](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService) with Visual Studio
-2. Build the solution with the Visual Studio's Build tool.
-3. Start the project in debug mode. The application is configured to run with a Docker container. However, for the sake of simplicity, I recommend running with the configuration like the below screenshot.
-![Configuration with Any CPU and https](image-1.png)
-4. A browser tab will be open and you will see the Swagger playground GUI where you can examine the schema and all the API Documentation.
-![Swagger playground GUI](image-2.png)
-5. You can test the APIs with the Swagger playground like this:
+1. Open the solution file from the `SettlementService` folder in Visual Studio.
+2. Build the solution.
+3. Start in debug mode (select **Any CPU / https** for simplicity).
+   ![Configuration](image-1.png)
+4. Swagger UI opens in the browser for API exploration and testing.
+   ![Swagger playground](image-2.png)
+
+## API
+
+### POST `/api/Booking`
+
+Request body:
+```json
+{
+  "bookingTime": "09:00",
+  "name": "John Smith"
+}
+```
+
+Returns `200 OK` with `{ "bookingId": "<guid>" }` on success.
+
 ![Testing Booking API](image-3.png)
-6. You can also test the settlement service with the [InfoTrack Settlement Service UI](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/settlement-service-ui) for the most complete experience. Make sure you note down the backend booking api endpoint and follow the GUI application's instructions to put it in the right place. In this case, it is `https://localhost:7206/api/Booking` but it might be different when you start debugging in your environment.
-7. You can also run the unit tests with the dependency [InfoTrack Settlement Service Test project](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService.Tests) in the same solution.
-![xUnit project appears in the same solution](image-4.png)
-8. Otherwise, you can see the testing results via the [Git Action](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/actions).
+
+## Companion Projects
+
+- [Settlement Service UI](../settlement-service-ui) -- React frontend
+- [Settlement Service Tests](../SettlementService.Tests) -- xUnit tests, also run by GitHub Actions CI
+
+![xUnit in solution](image-4.png)

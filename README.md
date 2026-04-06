@@ -1,21 +1,23 @@
-# VinhNgo-InfoTrack-SettlementService
+# InfoTrack Settlement Service
 
-Welcome to InfoTrack Settlement Service. This is an attempt made by [Vinh Ngo](https://github.com/vinhngogia0906) for the InfoTrack Coding Challenge.
+A booking management system built for the InfoTrack coding challenge. The solution comprises an ASP.NET REST API backend, a React TypeScript frontend, and an xUnit test project.
 
-## This repository contains 3 separate applications:
+## Architecture
 
-1. [InfoTrack Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService)
-  This is the backend ASP.NET application written in C# .NET Core 8.0 that uses REST API to accept booking reservations.
-2. [InfoTrack Settlement Service UI](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/settlement-service-ui)
-  This is the frontend React application written in Typescript, a support application to help using and testing the [Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService).
-3. [InfoTrack Settlement Service Test](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService.Tests)
-  This is the xUnit application for unit testing the [Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService), its test cases are also run by the Git Action CI process whenever the `main` branch changes.
+| Component | Tech | Description |
+|-----------|------|-------------|
+| [Settlement Service Engine](./SettlementService) | ASP.NET 8.0, C# | REST API that accepts and validates booking reservations with time-slot capacity limits (max 4 simultaneous bookings per slot, business hours 09:00--17:00) |
+| [Settlement Service UI](./settlement-service-ui) | React 18, TypeScript, MUI | Frontend form for creating bookings and viewing confirmation details |
+| [Settlement Service Tests](./SettlementService.Tests) | xUnit | Unit tests for the booking controller, also run by GitHub Actions CI on every push to `main` |
 
 ## Getting Started
-This is how you set up and run the project locally in your environment.
-1. Clone the repository
-```
-git clone https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService.git
-```
-2. Follow the instructions in the `README` files of [InfoTrack Settlement Service Engine](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/SettlementService) and [InfoTrack Settlement Service UI](https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService/tree/main/settlement-service-ui) to set them up. Please make sure you meet the prerequisites mentioned for each of the applications.
 
+1. Clone the repository:
+   ```
+   git clone https://github.com/vinhngogia0906/VinhNgo-InfoTrack-SettlementService.git
+   ```
+2. Follow the setup instructions in the README files for the [backend](./SettlementService) and [frontend](./settlement-service-ui) respectively.
+
+## CI
+
+A GitHub Actions workflow builds the .NET solution and runs tests on every push and pull request to `main`.
